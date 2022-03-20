@@ -1,16 +1,19 @@
 import React from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core';
 
+
 import Posts from './components/Posts/Posts';
 import Form from './components/Form/Form';
 import memories from '../src/images/memories.png';
+import useStyles from './styles.js';
 
 const App = () => {
+    const classes = useStyles();
     return (
         <Container maxwidth="lg">
-            <AppBar position="static" color="inherit">
-                <Typography variant="h2" aling="center">Memories</Typography>
-                <img src ={memories} alt="memories" height ="60"></img>
+            <AppBar className={classes.appBar} position="static" color="inherit">
+                <Typography classNmae={classes.heading} variant="h2" aling="center">Memories</Typography>
+                <img className={classes.image} src ={memories} alt="memories" height ="60"></img>
             </AppBar>
 
             <Grow in>
