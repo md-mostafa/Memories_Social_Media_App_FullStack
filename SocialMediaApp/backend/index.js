@@ -15,10 +15,11 @@ app.use(cors());
 
 
 app.use('/posts', postRoutes);
-
+/*
 app.get('/', (req, res) => {
     res.send('Akash is the best');
 })
+*/
 
 //connecting to mongodb
 
