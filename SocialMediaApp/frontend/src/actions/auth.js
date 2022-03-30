@@ -3,6 +3,7 @@ import * as api from '../api/index.js';
 
 
 //if action creator are asynchronous  then we have to use redux thunk
+//action makes a call to api
 
 export const signin = (formData, navigate) => async (dispatch) => {
     try {
