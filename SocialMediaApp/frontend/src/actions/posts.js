@@ -18,7 +18,17 @@ export const getPosts = () => async (dispatch) => {            //this is redux t
 
     //return action;
     //dispatch(action);
-}
+};
+
+export const getPostsBySearch = (searchQuery) => async (dispatch) => {   //this is redux thunk
+    try {
+      const { data } = await api.fetchPostsBySearch(searchQuery);
+  
+      console.log(data);
+    }catch(error) {
+      console.log(error);
+    }
+  };
 
 export const createPost = (post) => async (dispatch) => {
     try{
@@ -28,7 +38,7 @@ export const createPost = (post) => async (dispatch) => {
     }catch (error) {
         console.log(error.message);
     }
-}
+};
 
 export const updatePost = (id, post) => async (dispatch) => {
     try {
