@@ -3,10 +3,12 @@ import * as api from '../api';
 
 //action creators is a function that returns action
 
-export const getPosts = () => async (dispatch) => {            //this is redux thunk
+export const getPosts = (page) => async (dispatch) => {            //this is redux thunk
 
     try {
-        const { data } = await api.fetchPosts();
+        const { data } = await api.fetchPosts(page);
+        console.log(data);
+
         dispatch({ type: FETCH_ALL, payload: data });
 
     } catch (error) {
@@ -26,7 +28,7 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) => {   //this 
         const { data: { data } } = await api.fetchPostsBySearch(searchQuery);
         
         console.log(data);
-        dispatch({ type: FETCH_BY_SEARCH, payload: data });
+        dispatch({ type: FETCH_BY_SEARCH, payload: { data } });
         
     }catch(error) {
       console.log(error);
