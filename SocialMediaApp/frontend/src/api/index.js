@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5000' });
+//const API = axios.create({ baseURL: 'http://localhost:5000' });
+const API = axios.create({ baseURL: 'https://memoriesms.herokuapp.com/' });
 
 API.interceptors.request.use((req) => { //this is for auth middleware //specific for every request //need to send the token to backend so that our backend middleware verify user is loggedin
   if (localStorage.getItem('profile')) {
