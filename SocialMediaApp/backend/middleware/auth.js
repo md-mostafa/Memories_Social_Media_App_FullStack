@@ -1,31 +1,34 @@
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
+
+const secret = 'test';
 
 const auth = async (req, res, next) => {
-     try {
-        const token = req.headers.authorization.split(" ")[1]; //this is to check if a user wants to like delete then if he is the one or nt
-        const isCustomAuth = token.length < 500; //it is our own
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    const isCustomAuth = token.length < 500;
 
-        let decodedData;
+    let decodedData;
 
-        if(token && isCustomAuth) {
-            decodedData = jwt.verify(token, 'test');
+    if (token && isCustomAuth) {      
+      decodedData = jwt.verify(token, secret);
 
-            req.userId = decodedData?.id;
+      req.userId = decodedData?.id;
+    } else {
+      decodedData = jwt.decode(token);
 
-        }else {
-            decodedData = jwt.decode(token);
+      req.userId = decodedData?.sub;
+    }    
 
-            req.useId = decodedData?.sub;   //  ?. is called optional chaining
-        }
-
-        next();
-        
-     } catch(error) {
-         console.log(error);
-     }
-}
+    next();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export default auth;
+
+//this is to check if a user wants to like delete then if he is the one or nt
+ //it is our own
 
 //a user wants to like a post
 //click the like button =>first we go to auth middleware () confirms or denies the request if auth middleware(next) only then like controller...
